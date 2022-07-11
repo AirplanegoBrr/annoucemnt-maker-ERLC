@@ -1,0 +1,39 @@
+<!--Input dragable-->
+<form id="form">
+    <p><label for="input">Review of W3Schools:</label></p>
+    <textarea id="input" name="w3review" rows="4" cols="60"></textarea>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+<script>
+    const form = document.getElementById('form');
+    const input = document.getElementById('input');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var textInput = input.value;
+
+        var texts = textInput.split("\n")
+
+        var finalText = []
+
+        for (var i = 0; i < texts.length; i++) {
+            var text = texts[i];
+            var textLength = text.split("").length;
+            var spaceOnSides = (60-textLength)/2
+            var spaceOnSidesString = " "
+
+            var string = ""
+            for (var j = 0; j < spaceOnSides; j++) {
+                string += spaceOnSidesString
+            }
+            string += text
+            for (var j = 0; j < spaceOnSides; j++) {
+                string += spaceOnSidesString
+            }
+            finalText.push(string)
+        }
+        input.value = finalText.join("\n")
+    });
+</script>
